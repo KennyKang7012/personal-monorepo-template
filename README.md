@@ -1,8 +1,17 @@
 ---
-last_edited: 2026-06-15
+last_edited: 2026-10-31
 ---
 
 # Personal Codex Vault
+
+## 本機設定
+
+本 vault 位於 `/Users/kennykang/Projects/CodexProj/personal-vault`，目前以單一競賽專案為初始範圍：
+
+- [2026 Agent 基金經理人](projects/2026-esun-ai-challenge/README.md)：Claude Code 負責開發，Codex 負責每日 DataPack 下載與投組儀表板資訊截取、備存。
+- [初始設定與驗證紀錄](projects/2026-esun-ai-challenge/RESULT.md)。
+
+採繁體中文、台灣用語；重要技術概念先白話說明。此 vault 保存工作脈絡，程式與資料保留在原專案目錄。初始設定未啟用外部帳號掃描、新排程或監控聊天；下方為原始範本說明，不代表本機已啟用其所有功能。
 
 Starter workspace for giving Codex durable context: projects, people, skills,
 onboarding, recurring checks, and writing-style memory.

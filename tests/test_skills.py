@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+from datetime import date
 from pathlib import Path
 
 
@@ -39,7 +40,8 @@ def test_markdown_has_last_edited_frontmatter() -> None:
     assert markdown_files
     for path in markdown_files:
         data = frontmatter(path)
-        assert data.get("last_edited") == "2026-06-15", path
+        assert isinstance(data.get("last_edited"), str), path
+        date.fromisoformat(data["last_edited"])
 
 
 def test_skill_frontmatter_shape() -> None:
@@ -50,7 +52,7 @@ def test_skill_frontmatter_shape() -> None:
         assert set(data) == {"name", "description", "last_edited"}, path
         assert isinstance(data["name"], str) and data["name"]
         assert isinstance(data["description"], str) and data["description"]
-        assert data["last_edited"] == "2026-06-15"
+        date.fromisoformat(data["last_edited"])
 
 
 def test_onboarding_scripts_default_to_repo_root_vault() -> None:
