@@ -113,6 +113,10 @@ Assistant should ask before sending messages, changing meetings, editing shared 
 
 Repo-local skills live under `.codex/skills/`.
 
+完整功能與使用範例請見[技能包索引](.codex/skills/README.md)。跨 Session 交接可使用 [task-handoff](.codex/skills/task-handoff/SKILL.md)：產生交接文件，或核對既有交接內容後接續任務。
+
+vault 本身的技能整合與跨 Session 驗證：[交接快照](Handoff.md)、[驗證紀錄](RESULT.md)。這兩份文件不承接玉山等其他專案的作業。
+
 Useful starting points:
 
 - `onboarding`: first setup

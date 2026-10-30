@@ -1,0 +1,4 @@
+interface:
+  display_name: "跨 Session 任務交接"
+  short_description: "產生八段繁體中文交接文件，並在新 Session 核對實際狀態與授權後接續任務"
+  default_prompt: "請使用 $task-handoff 將目前任務整理成精簡的交接文件。"

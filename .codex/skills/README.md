@@ -4,7 +4,7 @@ last_edited: 2026-10-31
 
 # 技能包索引
 
-本專案目前包含 **17 個技能包**。技能包是給 Codex 使用的工作說明書，定義適用情境、處理步驟與驗證方式；每包的入口都是 `SKILL.md`。
+本專案目前包含 **18 個技能包**。技能包是給 Codex 使用的工作說明書，定義適用情境、處理步驟與驗證方式；每包的入口都是 `SKILL.md`。
 
 這些技能放在專案內直接使用，不代表已安裝到全域環境。點選下表的技能名稱，可以查看完整說明。
 
@@ -21,6 +21,7 @@ last_edited: 2026-10-31
 | 助理 | [write-like-me-bootstrap](write-like-me-bootstrap/SKILL.md) | 分析本人撰寫的 Slack、Email，建立個人寫作風格技能。 | 使用 write-like-me-bootstrap，分析我的寄件內容，先提供風格預覽。 |
 | 自動追蹤 | [loop](loop/SKILL.md) | 在目前聊天建立定期檢查，設定檢查頻率與停止條件。 | 使用 loop，每 30 分鐘檢查這個 PR 的 CI，完成或失敗時通知我。 |
 | 長期目標 | [ultragoal](ultragoal/SKILL.md) | 設計或啟動持續執行的目標，定義完成條件、驗證方法與進度紀錄。 | 使用 ultragoal，先設計這個重構工作的目標與驗收條件，暫不啟動。 |
+| 任務交接 | [task-handoff](task-handoff/SKILL.md) | 產生八段交接文件，或在新 Session 核對檔案、Git 狀態、驗證紀錄與授權後接手。 | 使用 task-handoff，將目前任務存成專案的 Handoff.md，並附上新 Session 提示詞。 |
 | 建立資料 | [new-project](new-project/SKILL.md) | 建立長期專案或短期實驗目錄，產生 README 與相關專案指引。 | 使用 new-project，建立讀書筆記工具專案，先準備文件骨架。 |
 | 建立資料 | [new-person](new-person/SKILL.md) | 依範本建立或更新合作對象筆記，保存角色與合作偏好等非敏感資訊。 | 使用 new-person，建立 Alex 的合作筆記，角色是前端工程師。 |
 | 程式審查 | [audit-ai-code](audit-ai-code/SKILL.md) | 檢查一般程式或後端程式的重複邏輯、過度設計、錯誤處理、測試與安全問題。 | 使用 audit-ai-code，審查目前 diff，只列問題，先不要修改。 |
@@ -50,9 +51,10 @@ last_edited: 2026-10-31
 
 ## 使用前要知道
 
+- 任務交接：`task-handoff` 會先區分 vault 入口與外部實作、資料位置，沿用既有交接檔名，引用 README、RESULT 等正式紀錄；不會因為交接而搬移程式或資料。
 - 外部服務：Email、Slack、GitHub 等相關流程需要可用的連接工具與帳號權限；GitHub 技能可能需要已登入的 `gh` 或 `oai_gh`。
 - 定期檢查與長期目標：`loop` 是隔一段時間再檢查；`ultragoal` 是持續推進到符合驗收條件。實際執行仍需環境提供相應工具。
-- 個人寫作風格：`write-like-me-bootstrap` 用來建立風格技能，預設產出 `.codex/skills/write-like-me/`。目前索引中的 17 包尚不包含這個產出；寫入前會先提供預覽並取得確認，不保存原始私人訊息。
+- 個人寫作風格：`write-like-me-bootstrap` 用來建立風格技能，預設產出 `.codex/skills/write-like-me/`。目前索引中的 18 包尚不包含這個產出；寫入前會先提供預覽並取得確認，不保存原始私人訊息。
 - Git 與公開操作：`gh-commit` 處理本機提交；`yeet` 包含 push 與建立 PR，只有明確授權整套流程時才使用。其他技能不會因為被選用，就自動取得 push、merge 或部署授權。
 - 隱私：公開範本中不要放入私人身分、財務、帳號專屬資料或憑證；個人專用內容應另行在自己的私有環境管理。
 
