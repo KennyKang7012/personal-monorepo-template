@@ -1,5 +1,5 @@
 ---
-last_edited: 2026-06-15
+last_edited: 2026-10-31
 ---
 
 # Root Agent Instructions
@@ -60,6 +60,7 @@ Prefer updating the canonical existing file over creating adjacent notes.
 - Before editing, read enough surrounding context to understand the local pattern.
 - Keep changes small and reversible unless Jason explicitly asks for a larger reshaping.
 - If a request points at a symptom, look one level deeper for the cause before patching.
+- Use `uv` for Python virtual environments and dependency management. Prefer `uv run` for Python commands and tests; use `uv venv` when a persistent environment is needed. Follow an existing project's dependency files, and do not install task dependencies into the system Python.
 
 ## Safety
 
@@ -82,5 +83,6 @@ Use these when relevant:
 - Assistant: `assistant`, `onboarding`
 - Artifacts: `simple-html-artifact`
 - Goals: `ultragoal`
+- Task handoff: `task-handoff`
 - Automations: `loop`
 - Bootstrapping: `new-person`, `new-project`
