@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claw Init · Codex 個人助理"
+  short_description: "問答式建立 Codex 個人助理的專案指令、身分、記憶與選用任務規格"
+  default_prompt: "使用 $claw-init，先檢查指定工作區，再透過問答準備個人助理設定與檔案。"

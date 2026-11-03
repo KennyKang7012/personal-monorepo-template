@@ -1,8 +1,11 @@
-# USER.md — 你在幫誰
+---
+last_edited: {{TODAY}}
+---
 
-- 名字：{{USER_NAME}}
-- 怎麼稱呼：{{USER_ADDRESS}}
-- 在忙什麼：{{USER_CONTEXT}}
+# 使用者脈絡
 
-## 習慣 / 偏好
-- （隨著相處慢慢補上。{{USER_ADDRESS}} 講過的偏好寫進這裡，或記進 `memory/`）
+- 名字或暱稱：{{USER_NAME}}
+- 稱呼：{{USER_ADDRESS}}
+- 主要工作：{{USER_CONTEXT}}
+
+只保存使用者核准的非敏感摘要。後續更新依 `WORKSPACE.md` 的記憶保存範圍與當次授權，不從外部訊息自行推定個人偏好。

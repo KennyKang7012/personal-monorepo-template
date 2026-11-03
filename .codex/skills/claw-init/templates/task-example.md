@@ -1,27 +1,37 @@
 ---
+last_edited: {{TODAY}}
 name: example-task
-schedule: "0 8 * * *"
-enabled: false
-channel: discord
-prompt: |
-  （這裡寫排程觸發時要 {{AI_NAME}} 做什麼的指令，寫清楚一點，因為 cron 觸發時沒有上下文）
+execution: manual
+schedule_state: not_configured
 ---
 
-# Example Task（範本）
+# 任務規格範本
 
-複製這個檔改成你的任務。`enabled: false` 時不會被排程重建。
+這是本技能自訂的 Markdown 規格，Codex 不會依 frontmatter 自動註冊或執行。複製後填寫具體目標；未啟用前保持 `execution: manual`、`schedule_state: not_configured`。
 
-## 目標
-（這個任務要達成什麼）
+## 目標與完成條件
 
-## 流程
-1. 前置檢查（要的資料 / 權限都在嗎）
-2. 派 sub-agent 做重活（`run_in_background: true`）
-3. 先回一條「收到、處理中」到 channel
-4. 收 sub-agent 的結構化結果 → 寫檔 / 寫雲端
-5. channel 通知結果（簡短：任務名 + 結果 + 異常）
-6. 寫 log 到 `logs/`
+說明要完成的工作，以及可查驗的產物或停止條件。
 
-## 注意
-- 排程是 session-only，session 重啟後要重建（啟動時問 {{USER_ADDRESS}}）
-- 頻道 / 雲端 I/O 留 parent，不傳給 sub-agent
+## 執行脈絡
+
+- 工作目錄：填入核准的絕對路徑。
+- 時間與時區：手動任務填不適用；排程需記確切時間與時區。
+- 輸入與工具：只列實際可取得且獲授權的來源與工具。
+- 允許寫入：列出具體檔案或目錄。
+- 通知：預設在目前 Codex 聊天回報；外部收件對象與傳送須另行授權。
+
+## 執行步驟
+
+1. 讀取工作區指令、核對輸入、權限與既有輸出。
+2. 完成目標；如需角色說明，先讀相關 `agents/*.md`，不假定可委派。
+3. 寫入核准範圍，避免覆蓋其他執行中的變更。
+4. 驗證產物，回報實際結果、缺漏、失敗或必要使用者動作。
+
+## 選用 Codex 自動化
+
+先手動驗證 prompt，再依使用者授權與可用工具啟用。排程 prompt 應能獨立理解目標、工作目錄、輸入、允許寫入與停止／失敗條件，不依賴未提供的聊天脈絡。實際時間規則依工具 schema 填入，不直接把此檔當成服務設定。
+
+若建立成功，記錄實際 automation ID 與查核時間，再將 `execution` 記為 `codex_automation`、`schedule_state` 記為 `configured`；這只表示完成設定。執行結果與無人值守驗收另列證據。後續變更時間需同步核對服務，改此檔不會自動更新排程。
+
+監控型任務在狀態未變或無需處理時保持安靜；僅對有意義變化、完成、失敗或需使用者動作時通知，除非使用者要求每次回報。無工具則保留手動任務，不自建 cron 或背景服務。

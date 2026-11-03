@@ -1,47 +1,43 @@
-# claw-init 🦞
+---
+last_edited: 2026-11-04
+---
 
-> 把一個（通常是空的）Claude Code 工作目錄，**問答式**初始化成一隻 OpenClaw 風格的個人助理（社長口中的「龍蝦」）。
+# claw-init — Codex 版本
 
-這是一個 [Claude Code](https://claude.com/claude-code) **Skill**。OpenClaw 的概念是：把 Claude Code 跑成 24/7 的個人助理，接 Discord / Telegram / LINE 等頻道，靠 `CLAUDE.md` / `IDENTITY.md` / `SOUL.md` / `USER.md` / `MEMORY.md` 這幾個身份檔，把通用的 Claude 變成「某個人的專屬助理」。`claw-init` 就是那個引導建站流程。
+透過問答建立個人助理的專案指令、身分、語氣、工作區記憶、角色工作說明與選用任務規格。入口與完整輸出對照見 [SKILL.md](SKILL.md)。
 
-## 安裝
+## 使用
 
-把整包丟進你專案的 skills 目錄：
+本 vault 依專案慣例將技能保留在 `.codex/skills/claw-init/`；目前主機已提供此技能。一般 Codex 環境的官方 repo 技能探索位置為 `.agents/skills/`，不要假設所有環境都會自動探索 `.codex/skills/`，也不要為此自動建立重複副本。
 
-```bash
-git clone https://github.com/Wcc723/claude-claw-init.git
-mkdir -p <你的專案>/.claude/skills
-cp -R claude-claw-init <你的專案>/.claude/skills/claw-init
+若技能已出現在清單中：
+
+```text
+使用 $claw-init，幫我在指定的工作目錄初始化個人助理，先檢查既有檔案再問答。
 ```
 
-之後在那個專案裡對 Claude Code 說「**初始化龍蝦**」「**claw-init**」「**bootstrap openclaw**」其中一句即可觸發。
+未被探索時直接指定：
 
-## 跑完會長出什麼
-
-寫進**目前工作目錄（CWD）**，不是這個 skill 所在的 repo：
-
-| 路徑 | 內容 |
-|---|---|
-| `CLAUDE.md` | 啟動流程 + 運行期互動規則 + 人格 + 記憶維護 + task 設計原則 + 頻道規則 + 安全守則 |
-| `IDENTITY.md` | AI 是誰 |
-| `SOUL.md` | AI 怎麼說話（語氣規則） |
-| `USER.md` | 在幫誰（名字、稱呼、脈絡） |
-| `MEMORY.md` | 長期記憶索引（骨架） |
-| `memory/<今天>.md` | 第一篇記憶（建站紀錄） |
-| `.claude/settings.json` | 資料夾範圍 + 封鎖危險指令 |
-| `tasks/_TEMPLATE.md` | 排程任務範本 |
-| `tasks/memory-nightly.md`、`tasks/schedule-keeper.md` | 每晚記憶整理排程（**選用**，問答決定） |
-| `.claude/agents/memory-keeper.md`、`.claude/agents/researcher.md` | 兩隻基本 sub-agent |
-| `.gitignore`、`artifacts/`、`logs/` | 暫存與 log 歸宿 |
-
-## 結構
-
-```
-.
-├── SKILL.md          # Skill 主體（觸發詞、問答流程、模板填值規則）
-└── templates/        # 各身份檔 / agent / task 的模板（用 {{變數}} 佔位）
+```text
+請讀取本專案 .codex/skills/claw-init/SKILL.md，依流程在我指定的目錄初始化助理。
 ```
 
-## 授權
+已有 vault 時先規劃合併；不會把本技能資料夾當成新工作區。單純要求修改技能或分析相容性，不會觸發建站。
 
-MIT
+## 從 Claude Code 轉換的差異
+
+| 上游做法 | 此版本 |
+| --- | --- |
+| `CLAUDE.md` | `AGENTS.md`，明確讀取身分與記憶檔 |
+| `.claude/settings.json` | `WORKSPACE.md` 協作約定，不變更主機權限 |
+| `.claude/agents/*.md` 與固定模型／工具 | `agents/*.md` 一般角色提示，依可用能力與授權決定是否委派 |
+| CronCreate 與每週刪除重建管家 | 任務規格與 Codex 自動化分離，不自動註冊或刷新排程 |
+| Discord 等頻道假設 | 依實際可用連接工具與授權處理 |
+
+角色範本保留記憶整理員、研究員兩種職責。任務範本保留通用任務與選用每晚記憶整理。初始化只準備檔案；排程、頻道、常駐執行與無人值守成果需分別驗證。
+
+## 來源與授權
+
+改編自 [Wcc723/claude-claw-init](https://github.com/Wcc723/claude-claw-init)，基準版本 `f171f0bd896f7b340f76097f8dc53386204b57ca`。保留原始 [MIT LICENSE](LICENSE)。此目錄是本地 Codex 改編版，不再與上游逐位元相同。
+
+查核日期：2026-11-04。設計依據：[技能格式與探索](https://learn.chatgpt.com/docs/build-skills)、[AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)、[排程任務](https://learn.chatgpt.com/docs/automations?surface=app)。
