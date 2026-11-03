@@ -1,10 +1,10 @@
 ---
-last_edited: 2026-10-31
+last_edited: 2026-11-04
 ---
 
 # 技能包索引
 
-本專案目前包含 **18 個技能包**。技能包是給 Codex 使用的工作說明書，定義適用情境、處理步驟與驗證方式；每包的入口都是 `SKILL.md`。
+本專案目前包含 **19 個技能包**。技能包是給 AI 助理使用的工作說明書，定義適用情境、處理步驟與驗證方式；每包的入口都是 `SKILL.md`。
 
 這些技能放在專案內直接使用，不代表已安裝到全域環境。點選下表的技能名稱，可以查看完整說明。
 
@@ -14,6 +14,7 @@ last_edited: 2026-10-31
 
 | 類別 | 技能包 | 功能 | 使用範例 |
 | --- | --- | --- | --- |
+| Claude Code 初始化 | [claw-init](claw-init/SKILL.md) | 問答式建立個人助理的身分、記憶、agent 與任務範本；下載的原始版本尚未轉換或驗證 Codex 相容性。 | 請先讀取 claw-init/SKILL.md，分析它與目前 vault 的差異，先不要初始化。 |
 | 玉山競賽 | [esun-datapack-guarded-download](esun-datapack-guarded-download/SKILL.md) | 依官方交易日下載 DataPack，避免重複下載或覆寫，核對 JSON 與來源檔案。 | 使用 esun-datapack-guarded-download，依官方顯示日期下載並驗證 DataPack。 |
 | 玉山競賽 | [esun-screenshot-archive](esun-screenshot-archive/SKILL.md) | 備存儀表板頁面、日期／組別／分頁與完整歷史回看，產生索引及驗證紀錄。 | 使用 esun-screenshot-archive，依當次授權範圍截取並備存晚間儀表板資訊。 |
 | 助理 | [onboarding](onboarding/SKILL.md) | 首次設定工作助理，了解專案、優先順序、合作對象、連接服務與追蹤需求。 | 使用 onboarding，幫我完成這個 vault 的初始設定。 |
@@ -54,7 +55,8 @@ last_edited: 2026-10-31
 - 任務交接：`task-handoff` 會先區分 vault 入口與外部實作、資料位置，沿用既有交接檔名，引用 README、RESULT 等正式紀錄；不會因為交接而搬移程式或資料。
 - 外部服務：Email、Slack、GitHub 等相關流程需要可用的連接工具與帳號權限；GitHub 技能可能需要已登入的 `gh` 或 `oai_gh`。
 - 定期檢查與長期目標：`loop` 是隔一段時間再檢查；`ultragoal` 是持續推進到符合驗收條件。實際執行仍需環境提供相應工具。
-- 個人寫作風格：`write-like-me-bootstrap` 用來建立風格技能，預設產出 `.codex/skills/write-like-me/`。目前索引中的 18 包尚不包含這個產出；寫入前會先提供預覽並取得確認，不保存原始私人訊息。
+- 個人寫作風格：`write-like-me-bootstrap` 用來建立風格技能，預設產出 `.codex/skills/write-like-me/`。目前索引中的 19 包尚不包含這個產出；寫入前會先提供預覽並取得確認，不保存原始私人訊息。
+- 外部技能：`claw-init/` 原封保留 [Wcc723/claude-claw-init](https://github.com/Wcc723/claude-claw-init) 的 `f171f0bd896f7b340f76097f8dc53386204b57ca` 版本（MIT），包含上游 frontmatter 的 `triggers_zh`、`triggers_en`，作為下載原件保留；尚未套用本專案的 frontmatter 欄位限制。它使用 Claude Code 的設定與排程機制，本次僅下載，未執行建站或啟用排程。
 - Git 與公開操作：`gh-commit` 處理本機提交；`yeet` 包含 push 與建立 PR，只有明確授權整套流程時才使用。其他技能不會因為被選用，就自動取得 push、merge 或部署授權。
 - 隱私：公開範本中不要放入私人身分、財務、帳號專屬資料或憑證；個人專用內容應另行在自己的私有環境管理。
 
